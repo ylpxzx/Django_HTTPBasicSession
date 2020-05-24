@@ -1,0 +1,106 @@
+:root {
+  --desired-size: 20;
+  --coefficient: 1vmin;
+  --size: calc(var(--desired-size) * var(--coefficient));
+  --primary-color: hsl(320, 100%, 50%);
+  --chord: hsl(45, 100%, 40%);
+  --shine: hsla(0, 0%, 100%, 0.75);
+}
+
+body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background: hsl(180, 100%, 95%);
+  overflow: hidden;
+}
+
+.balloon {
+  --primary-color: hsla(var(--h, 0), 100%, 50%, 0.8);
+  --size: calc(var(--s, 10) * var(--coefficient));
+  height: calc(1.2 * var(--size));
+  width: var(--size);
+  background: var(--primary-color);
+  border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+  position: absolute;
+  top: 50%;
+  left: calc(var(--x, 50) * 1%);
+  -webkit-animation: float calc(var(--d, 1) * 1s) calc(var(--delay, 0) * -1s) infinite linear both;
+          animation: float calc(var(--d, 1) * 1s) calc(var(--delay, 0) * -1s) infinite linear both;
+}
+
+.balloon:before {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  background: blue;
+  top: 8%;
+  left: 16%;
+  border-radius: 50%;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+  background: var(--shine);
+}
+
+
+.balloon__handle {
+  width: 2%;
+  height: 60%;
+  background: var(--chord);
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  position: absolute;
+}
+.balloon__handle:before,
+.balloon__handle:after {
+  content: '';
+  position: absolute;
+  height: 5%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border-radius: 25% / 50%;
+  left: 50%;
+}
+
+.balloon__handle:before {
+  top: 0;
+  background: var(--chord);
+  width: 500%;
+}
+
+.balloon__handle:after {
+  top: 5%;
+  background: var(--primary-color);
+  width: 700%;
+}
+
+
+@-webkit-keyframes float {
+  from {
+    -webkit-transform: translate(-50%, -50%) translate(0, 100vh);
+            transform: translate(-50%, -50%) translate(0, 100vh);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) translate(0, -100vh);
+            transform: translate(-50%, -50%) translate(0, -100vh);
+  }
+}
+
+
+@keyframes float {
+  from {
+    -webkit-transform: translate(-50%, -50%) translate(0, 100vh);
+            transform: translate(-50%, -50%) translate(0, 100vh);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) translate(0, -100vh);
+            transform: translate(-50%, -50%) translate(0, -100vh);
+  }
+}
